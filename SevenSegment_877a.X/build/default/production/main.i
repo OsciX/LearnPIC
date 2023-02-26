@@ -1876,26 +1876,43 @@ extern __bank0 __bit __timeout;
 # 20 "main.c" 2
 
 
-const int digits[10] = {
-    0b11000000,
-    0b11111001,
-    0b10100100,
-    0b10110000,
-    0b10011001,
-    0b10010010,
-    0b10000010,
-    0b11111000,
-    0b10000000,
-    0b10011000,
+
+
+
+int currentDigit = 0;
+int update = 0;
+int state = 0;
+
+void writeDigit(uint8_t digit, uint8_t value);
+
+void __attribute__((picinterrupt(("")))) timer_0() {
+    if (INTCONbits.TMR0IF == 1) {
+        currentDigit++;
+        if (currentDigit > 3) {
+            currentDigit = 0;
+        }
+
+        update = 1;
+        INTCONbits.TMR0IF = 0;
+    }
 };
 
 
 int main(void) {
+
+
+    INTCONbits.GIE = 1;
+    INTCONbits.PEIE = 1;
+    INTCONbits.TMR0IE = 1;
+
+
+    OPTION_REG = 0x01;
+    TMR0 = 155;
+
     TRISAbits.TRISA3 = 0x00;
     TRISCbits.TRISC3 = 0x00;
     TRISCbits.TRISC4 = 0x00;
     TRISCbits.TRISC5 = 0x00;
-
     TRISD = 0x0;
 
 
@@ -1905,10 +1922,6 @@ int main(void) {
     PORTCbits.RC5 = 0;
 
 
-
-    PORTAbits.RA3 = 0;
-
-
     PORTCbits.RC4 = 1;
 
     PORTD = 0xF0;
@@ -1916,14 +1929,47 @@ int main(void) {
     PORTCbits.RC4 = 0;
 
 
+    PORTAbits.RA3 = 0;
+
     while(1) {
-        for (int i = 0; i < 10; i++) {
-
-            PORTCbits.RC3 = 1;
-            PORTD = digits[i];
-
-            PORTCbits.RC3 = 0;
+        for(int j = 0; j<4; j++) {
+        for(int i = 0; i<10; i++) {
+            writeDigit(j,i);
             _delay((unsigned long)((500)*(4000000/4000.0)));
         }
+        }
     }
+}
+
+
+
+
+
+void writeDigit(uint8_t digit, uint8_t value) {
+
+    const uint8_t nums[10] = {
+        0b11000000,
+        0b11111001,
+        0b10100100,
+        0b10110000,
+        0b10011001,
+        0b10010010,
+        0b10000010,
+        0b11111000,
+        0b10000000,
+        0b10011000,
+    };
+
+
+    PORTCbits.RC4 = 1;
+
+    PORTD = 0b1 << (4+digit);
+
+    PORTCbits.RC4 = 0;
+
+
+    PORTCbits.RC3 = 1;
+    PORTD = nums[value];
+
+    PORTCbits.RC3 = 0;
 }

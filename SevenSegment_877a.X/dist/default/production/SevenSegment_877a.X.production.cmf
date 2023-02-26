@@ -11,16 +11,23 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-$C:\Users\Ryan\AppData\Local\Temp\xcAskt0.o
+$C:\Users\Ryan\AppData\Local\Temp\xcAsjso.o
 idloc IDLOC 5 2000 2000 4 2 1
-end_init CODE 0 0 0 3 2 1
+reset_vec CODE 0 0 0 3 2 1
+end_init CODE 0 E E 3 2 1
 config CONFIG 4 2007 2007 1 2 1
 $dist/default/production\SevenSegment_877a.X.production.o
-cinit CODE 0 7FC 7FC 4 2 1
+cinit CODE 0 11 11 C 2 1
 idloc IDLOC 5 2000 2000 4 2 1
-maintext CODE 0 7B5 7B5 47 2 1
-cstackCOMMON COMMON 1 70 70 5 1 1
-strings STRING 0 3 3 1A 2 1
+text1 CODE 0 B1 B1 1E 2 1
+text2 CODE 0 8A 8A 27 2 1
+maintext CODE 0 1D 1D 6D 2 1
+cstackCOMMON COMMON 1 70 70 6 1 1
+cstackBANK0 BANK0 1 20 20 7 1 1
+intentry CODE 0 4 4 A 2 1
+bssBANK0 BANK0 1 27 27 2 1 1
+strings STRING 0 CF CF 10 2 1
+bssCOMMON COMMON 1 76 76 4 1 1
 config CONFIG 4 2007 2007 1 2 1
 # %UNUSED Section
 # This section enumerates the unused ranges of each CLASS. Each entry
@@ -28,30 +35,30 @@ config CONFIG 4 2007 2007 1 2 1
 #    <class name> <range> <delta>
 # Addresses given in the range are in hexadecimal and units of delta.
 %UNUSED
-RAM 20-6F 1
+RAM 29-6F 1
 RAM A0-EF 1
 RAM 110-16F 1
 RAM 190-1EF 1
-BANK0 20-6F 1
+BANK0 29-6F 1
 BANK1 A0-EF 1
 BANK2 110-16F 1
 BANK3 190-1EF 1
-CONST 1D-7B4 2
-CONST 800-1FFF 2
-ENTRY 1D-7B4 2
-ENTRY 800-1FFF 2
-CODE 1D-7B4 2
-CODE 800-1FFF 2
+CONST 3-3 2
+CONST DF-1FFF 2
+ENTRY 3-3 2
+ENTRY DF-1FFF 2
+CODE 3-3 2
+CODE DF-1FFF 2
 SFR0 0-1F 1
 SFR1 80-9F 1
 SFR2 100-10F 1
 SFR3 180-18F 1
-COMMON 75-7D 1
+COMMON 7A-7D 1
 EEDATA 2100-21FF 2
-STRCODE 1D-7B4 2
-STRCODE 800-1FFF 2
-STRING 1D-7B4 2
-STRING 800-1FFF 2
+STRCODE 3-3 2
+STRCODE DF-1FFF 2
+STRING 3-3 2
+STRING DF-1FFF 2
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
 # The beginning of the section is indicated by %LINETAB.
@@ -66,35 +73,71 @@ STRING 800-1FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\SevenSegment_877a.X.production.o
-7FC cinit CODE >416:C:\Users\Ryan\AppData\Local\Temp\xcAskt0.s
-7FC cinit CODE >419:C:\Users\Ryan\AppData\Local\Temp\xcAskt0.s
-7FC cinit CODE >425:C:\Users\Ryan\AppData\Local\Temp\xcAskt0.s
-7FC cinit CODE >427:C:\Users\Ryan\AppData\Local\Temp\xcAskt0.s
-7FD cinit CODE >428:C:\Users\Ryan\AppData\Local\Temp\xcAskt0.s
-7B5 maintext CODE >36:C:\Users\Ryan\AppData\Local\Temp\xcAskt0.s
-7B5 maintext CODE >36:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
-7B5 maintext CODE >37:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
-7B8 maintext CODE >38:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
-7B9 maintext CODE >39:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
-7BA maintext CODE >40:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
-7BB maintext CODE >42:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
-7BC maintext CODE >46:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
-7BF maintext CODE >47:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
-7C1 maintext CODE >48:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
-7C2 maintext CODE >52:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
-7C3 maintext CODE >55:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
-7C4 maintext CODE >57:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
-7C6 maintext CODE >59:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
-7C7 maintext CODE >62:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
-7C7 maintext CODE >63:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
-7C9 maintext CODE >65:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
-7CC maintext CODE >66:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
-7D7 maintext CODE >68:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
-7D8 maintext CODE >69:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
-7E5 maintext CODE >70:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
-7E7 maintext CODE >70:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
-7F0 maintext CODE >70:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
-7F4 maintext CODE >70:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
+11 cinit CODE >408:C:\Users\Ryan\AppData\Local\Temp\xcAsjso.s
+11 cinit CODE >411:C:\Users\Ryan\AppData\Local\Temp\xcAsjso.s
+11 cinit CODE >431:C:\Users\Ryan\AppData\Local\Temp\xcAsjso.s
+12 cinit CODE >432:C:\Users\Ryan\AppData\Local\Temp\xcAsjso.s
+13 cinit CODE >433:C:\Users\Ryan\AppData\Local\Temp\xcAsjso.s
+14 cinit CODE >434:C:\Users\Ryan\AppData\Local\Temp\xcAsjso.s
+15 cinit CODE >437:C:\Users\Ryan\AppData\Local\Temp\xcAsjso.s
+16 cinit CODE >438:C:\Users\Ryan\AppData\Local\Temp\xcAsjso.s
+17 cinit CODE >439:C:\Users\Ryan\AppData\Local\Temp\xcAsjso.s
+18 cinit CODE >440:C:\Users\Ryan\AppData\Local\Temp\xcAsjso.s
+19 cinit CODE >446:C:\Users\Ryan\AppData\Local\Temp\xcAsjso.s
+19 cinit CODE >448:C:\Users\Ryan\AppData\Local\Temp\xcAsjso.s
+1A cinit CODE >449:C:\Users\Ryan\AppData\Local\Temp\xcAsjso.s
+4 intentry CODE >31:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
+8A text2 CODE >31:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
+8A text2 CODE >32:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
+8E text2 CODE >33:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
+90 text2 CODE >33:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
+94 text2 CODE >34:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
+99 text2 CODE >34:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
+9D text2 CODE >34:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
+A1 text2 CODE >35:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
+A3 text2 CODE >38:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
+A7 text2 CODE >39:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
+A8 text2 CODE >41:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
+B1 text1 CODE >91:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
+B2 text1 CODE >107:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
+B5 text1 CODE >109:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
+BB text1 CODE >109:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
+BE text1 CODE >109:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
+C2 text1 CODE >111:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
+C3 text1 CODE >114:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
+C4 text1 CODE >115:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
+CD text1 CODE >117:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
+CE text1 CODE >118:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
+1D maintext CODE >44:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
+1D maintext CODE >47:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
+1E maintext CODE >48:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
+1F maintext CODE >49:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
+20 maintext CODE >52:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
+24 maintext CODE >53:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
+28 maintext CODE >55:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
+2B maintext CODE >56:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
+2C maintext CODE >57:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
+2D maintext CODE >58:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
+2E maintext CODE >59:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
+2F maintext CODE >63:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
+32 maintext CODE >64:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
+34 maintext CODE >65:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
+35 maintext CODE >68:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
+36 maintext CODE >70:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
+38 maintext CODE >72:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
+39 maintext CODE >75:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
+3A maintext CODE >78:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
+3E maintext CODE >79:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
+42 maintext CODE >80:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
+4E maintext CODE >81:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
+5C maintext CODE >82:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
+60 maintext CODE >82:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
+69 maintext CODE >82:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
+6D maintext CODE >82:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
+71 maintext CODE >83:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
+75 maintext CODE >83:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
+7E maintext CODE >83:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
+82 maintext CODE >83:C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -108,44 +151,53 @@ $dist/default/production\SevenSegment_877a.X.production.o
 # is the name of the object file in which the symbol was defined.
 %SYMTAB
 ___latbits 2 0 ABS 0 - dist/default/production\SevenSegment_877a.X.production.o
-__Hspace_0 800 0 ABS 0 - -
-__Hspace_1 75 0 ABS 0 - -
+__Hspace_0 DF 0 ABS 0 - -
+__Hspace_1 7A 0 ABS 0 - -
 __Hspace_2 0 0 ABS 0 - -
 __Hspace_3 0 0 ABS 0 - -
 __Hspace_4 400F 0 ABS 0 - -
+__end_of_writeDigit 19E 0 CODE 0 text1 dist/default/production\SevenSegment_877a.X.production.o
+_timer_0 114 0 CODE 0 text2 dist/default/production\SevenSegment_877a.X.production.o
 __Heeprom_data 0 0 EEDATA 3 eeprom_data -
-main@i 73 0 COMMON 1 cstackCOMMON dist/default/production\SevenSegment_877a.X.production.o
+writeDigit@digit 75 0 COMMON 1 cstackCOMMON dist/default/production\SevenSegment_877a.X.production.o
+main@i 25 0 BANK0 1 cstackBANK0 dist/default/production\SevenSegment_877a.X.production.o
+main@j 23 0 BANK0 1 cstackBANK0 dist/default/production\SevenSegment_877a.X.production.o
 __Hstrings 0 0 ABS 0 strings -
-___sp 0 0 STACK 2 stack C:\Users\Ryan\AppData\Local\Temp\xcAskt0.o
-_main F6A 0 CODE 0 maintext dist/default/production\SevenSegment_877a.X.production.o
+writeDigit@value 73 0 COMMON 1 cstackCOMMON dist/default/production\SevenSegment_877a.X.production.o
+_TMR0 1 0 ABS 0 - dist/default/production\SevenSegment_877a.X.production.o
+___sp 0 0 STACK 2 stack C:\Users\Ryan\AppData\Local\Temp\xcAsjso.o
+_main 3A 0 CODE 0 maintext dist/default/production\SevenSegment_877a.X.production.o
 btemp 7E 0 ABS 0 - dist/default/production\SevenSegment_877a.X.production.o
-start 0 0 CODE 0 init C:\Users\Ryan\AppData\Local\Temp\xcAskt0.o
+start 1C 0 CODE 0 init C:\Users\Ryan\AppData\Local\Temp\xcAsjso.o
+__HbssCOMMON 0 0 ABS 0 bssCOMMON -
 __Hpowerup 0 0 CODE 0 powerup -
-intlevel0 0 0 ENTRY 0 functab C:\Users\Ryan\AppData\Local\Temp\xcAskt0.o
-intlevel1 0 0 ENTRY 0 functab C:\Users\Ryan\AppData\Local\Temp\xcAskt0.o
-intlevel2 0 0 ENTRY 0 functab C:\Users\Ryan\AppData\Local\Temp\xcAskt0.o
-intlevel3 0 0 ENTRY 0 functab C:\Users\Ryan\AppData\Local\Temp\xcAskt0.o
-intlevel4 0 0 ENTRY 0 functab C:\Users\Ryan\AppData\Local\Temp\xcAskt0.o
-intlevel5 0 0 ENTRY 0 functab C:\Users\Ryan\AppData\Local\Temp\xcAskt0.o
+intlevel0 0 0 ENTRY 0 functab C:\Users\Ryan\AppData\Local\Temp\xcAsjso.o
+intlevel1 0 0 ENTRY 0 functab C:\Users\Ryan\AppData\Local\Temp\xcAsjso.o
+intlevel2 0 0 ENTRY 0 functab C:\Users\Ryan\AppData\Local\Temp\xcAsjso.o
+intlevel3 0 0 ENTRY 0 functab C:\Users\Ryan\AppData\Local\Temp\xcAsjso.o
+intlevel4 0 0 ENTRY 0 functab C:\Users\Ryan\AppData\Local\Temp\xcAsjso.o
+intlevel5 0 0 ENTRY 0 functab C:\Users\Ryan\AppData\Local\Temp\xcAsjso.o
+__LbssCOMMON 0 0 ABS 0 bssCOMMON -
 wtemp0 7E 0 ABS 0 - dist/default/production\SevenSegment_877a.X.production.o
 __Hfunctab 0 0 ENTRY 0 functab -
 __Hclrtext 0 0 ABS 0 clrtext -
 __Lmaintext 0 0 ABS 0 maintext -
-__end_of_digits 3A 0 STRING 0 strings dist/default/production\SevenSegment_877a.X.production.o
-___stackhi 0 0 ABS 0 - C:\Users\Ryan\AppData\Local\Temp\xcAskt0.o
-___stacklo 0 0 ABS 0 - C:\Users\Ryan\AppData\Local\Temp\xcAskt0.o
-start_initialization FF8 0 CODE 0 cinit dist/default/production\SevenSegment_877a.X.production.o
+_OPTION_REG 81 0 ABS 0 - dist/default/production\SevenSegment_877a.X.production.o
+___stackhi 0 0 ABS 0 - C:\Users\Ryan\AppData\Local\Temp\xcAsjso.o
+___stacklo 0 0 ABS 0 - C:\Users\Ryan\AppData\Local\Temp\xcAsjso.o
+start_initialization 22 0 CODE 0 cinit dist/default/production\SevenSegment_877a.X.production.o
 _TRISAbits 85 0 ABS 0 - dist/default/production\SevenSegment_877a.X.production.o
 _TRISCbits 87 0 ABS 0 - dist/default/production\SevenSegment_877a.X.production.o
-___int_sp 0 0 STACK 2 stack C:\Users\Ryan\AppData\Local\Temp\xcAskt0.o
+__pcstackBANK0 20 0 BANK0 1 cstackBANK0 dist/default/production\SevenSegment_877a.X.production.o
+___int_sp 0 0 STACK 2 stack C:\Users\Ryan\AppData\Local\Temp\xcAsjso.o
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 ABS 0 bank2 -
 __Hbank3 0 0 ABS 0 bank3 -
-__Hcinit 1000 0 CODE 0 cinit -
+__Hcinit 3A 0 CODE 0 cinit -
 __Hidloc 4008 0 IDLOC 5 idloc -
 __Hstack 0 0 STACK 2 stack -
-__stringbase 10 0 STRING 0 strings dist/default/production\SevenSegment_877a.X.production.o
+__stringbase 1A8 0 STRING 0 strings dist/default/production\SevenSegment_877a.X.production.o
 __Hmaintext 0 0 ABS 0 maintext -
 __Hcommon 0 0 ABS 0 common -
 __Hconfig 4010 0 CONFIG 4 config -
@@ -153,14 +205,15 @@ __Lbank0 0 0 ABS 0 bank0 -
 __Lbank1 0 0 ABS 0 bank1 -
 __Lbank2 0 0 ABS 0 bank2 -
 __Lbank3 0 0 ABS 0 bank3 -
-__Lcinit FF8 0 CODE 0 cinit -
+__Lcinit 22 0 CODE 0 cinit -
 __Lidloc 0 0 IDLOC 5 idloc -
 __Lstack 0 0 STACK 2 stack -
 _PORTAbits 5 0 ABS 0 - dist/default/production\SevenSegment_877a.X.production.o
 _PORTCbits 7 0 ABS 0 - dist/default/production\SevenSegment_877a.X.production.o
+_INTCONbits B 0 ABS 0 - dist/default/production\SevenSegment_877a.X.production.o
 __Habs1 0 0 ABS 0 abs1 -
 __Hcode 0 0 ABS 0 code -
-__Hinit 0 0 CODE 0 init -
+__Hinit 1C 0 CODE 0 init -
 __Hsfr0 0 0 ABS 0 sfr0 -
 __Hsfr1 0 0 ABS 0 sfr1 -
 __Hsfr2 0 0 ABS 0 sfr2 -
@@ -168,50 +221,66 @@ __Hsfr3 0 0 ABS 0 sfr3 -
 __Htext 0 0 ABS 0 text -
 __Labs1 0 0 ABS 0 abs1 -
 __Lcode 0 0 ABS 0 code -
-__Linit 0 0 CODE 0 init -
+__Linit 1C 0 CODE 0 init -
 __Lsfr0 0 0 ABS 0 sfr0 -
 __Lsfr1 0 0 ABS 0 sfr1 -
 __Lsfr2 0 0 ABS 0 sfr2 -
 __Lsfr3 0 0 ABS 0 sfr3 -
 __Ltext 0 0 ABS 0 text -
+__LcstackBANK0 0 0 ABS 0 cstackBANK0 -
 __HcstackCOMMON 0 0 ABS 0 cstackCOMMON -
-__S0 800 0 ABS 0 - -
-__S1 75 0 ABS 0 - -
+__S0 DF 0 ABS 0 - -
+__S1 7A 0 ABS 0 - -
 __S3 0 0 ABS 0 - -
-_digits 12 0 STRING 0 strings dist/default/production\SevenSegment_877a.X.production.o
-__Lintentry 0 0 CODE 0 intentry -
-__stringtab 6 0 STRING 0 strings dist/default/production\SevenSegment_877a.X.production.o
-reset_vec 0 0 CODE 0 reset_vec C:\Users\Ryan\AppData\Local\Temp\xcAskt0.o
-__pmaintext F6A 0 CODE 0 maintext dist/default/production\SevenSegment_877a.X.production.o
+saved_w 7E 0 ABS 0 - dist/default/production\SevenSegment_877a.X.production.o
+__Lintentry 8 0 CODE 0 intentry -
+__stringtab 19E 0 STRING 0 strings dist/default/production\SevenSegment_877a.X.production.o
+reset_vec 0 0 CODE 0 reset_vec C:\Users\Ryan\AppData\Local\Temp\xcAsjso.o
+__LbssBANK0 0 0 ABS 0 bssBANK0 -
+__pmaintext 3A 0 CODE 0 maintext dist/default/production\SevenSegment_877a.X.production.o
 __Lcommon 0 0 ABS 0 common -
 __Lconfig 0 0 CONFIG 4 config -
-__end_of__stringtab 12 0 STRING 0 strings dist/default/production\SevenSegment_877a.X.production.o
+__end_of_timer_0 162 0 CODE 0 text2 dist/default/production\SevenSegment_877a.X.production.o
+_update 76 0 COMMON 1 bssCOMMON dist/default/production\SevenSegment_877a.X.production.o
+__end_of__stringtab 1AA 0 STRING 0 strings dist/default/production\SevenSegment_877a.X.production.o
 __Lspace_0 0 0 ABS 0 - -
 __Lspace_1 0 0 ABS 0 - -
 __Lspace_2 0 0 ABS 0 - -
 __Lspace_3 0 0 ABS 0 - -
 __Lspace_4 0 0 ABS 0 - -
-__Lend_init 0 0 CODE 0 end_init -
+__pbssCOMMON 76 0 COMMON 1 bssCOMMON dist/default/production\SevenSegment_877a.X.production.o
+__HcstackBANK0 0 0 ABS 0 cstackBANK0 -
+__Lend_init 1C 0 CODE 0 end_init -
 __LcstackCOMMON 0 0 ABS 0 cstackCOMMON -
-end_of_initialization FF8 0 CODE 0 cinit dist/default/production\SevenSegment_877a.X.production.o
-__Hintentry 0 0 CODE 0 intentry -
+end_of_initialization 32 0 CODE 0 cinit dist/default/production\SevenSegment_877a.X.production.o
+__Hintentry 1C 0 CODE 0 intentry -
 __Lstrings 0 0 ABS 0 strings -
-__Hreset_vec 0 0 CODE 0 reset_vec -
+__Hreset_vec 6 0 CODE 0 reset_vec -
+__HbssBANK0 0 0 ABS 0 bssBANK0 -
+__ptext1 162 0 CODE 0 text1 dist/default/production\SevenSegment_877a.X.production.o
+__ptext2 114 0 CODE 0 text2 dist/default/production\SevenSegment_877a.X.production.o
+writeDigit@nums 1AA 0 STRING 0 strings dist/default/production\SevenSegment_877a.X.production.o
+_currentDigit 78 0 COMMON 1 bssCOMMON dist/default/production\SevenSegment_877a.X.production.o
 __Lpowerup 0 0 CODE 0 powerup -
 __Leeprom_data 0 0 EEDATA 3 eeprom_data -
 __Lreset_vec 0 0 CODE 0 reset_vec -
-__end_of__initialization FF8 0 CODE 0 cinit dist/default/production\SevenSegment_877a.X.production.o
+__end_of__initialization 32 0 CODE 0 cinit dist/default/production\SevenSegment_877a.X.production.o
 __Lfunctab 0 0 ENTRY 0 functab -
 __Lclrtext 0 0 ABS 0 clrtext -
 __pcstackCOMMON 70 0 COMMON 1 cstackCOMMON dist/default/production\SevenSegment_877a.X.production.o
-__Hend_init 6 0 CODE 0 end_init -
-__end_of_main FF8 0 CODE 0 maintext dist/default/production\SevenSegment_877a.X.production.o
+_writeDigit 162 0 CODE 0 text1 dist/default/production\SevenSegment_877a.X.production.o
+__Hend_init 22 0 CODE 0 end_init -
+__end_of_main 114 0 CODE 0 maintext dist/default/production\SevenSegment_877a.X.production.o
+__end_ofwriteDigit@nums 1BE 0 STRING 0 strings dist/default/production\SevenSegment_877a.X.production.o
 _PORTD 8 0 ABS 0 - dist/default/production\SevenSegment_877a.X.production.o
 _TRISD 88 0 ABS 0 - dist/default/production\SevenSegment_877a.X.production.o
 __Hram 0 0 ABS 0 ram -
 __Lram 0 0 ABS 0 ram -
-__initialization FF8 0 CODE 0 cinit dist/default/production\SevenSegment_877a.X.production.o
-__pstrings 6 0 STRING 0 strings dist/default/production\SevenSegment_877a.X.production.o
+interrupt_function 8 0 CODE 0 intentry dist/default/production\SevenSegment_877a.X.production.o
+__pintentry 8 0 CODE 0 intentry dist/default/production\SevenSegment_877a.X.production.o
+__initialization 22 0 CODE 0 cinit dist/default/production\SevenSegment_877a.X.production.o
+__pbssBANK0 27 0 BANK0 1 bssBANK0 dist/default/production\SevenSegment_877a.X.production.o
+__pstrings 19E 0 STRING 0 strings dist/default/production\SevenSegment_877a.X.production.o
 # %SPLITSTAB Section
 # This section enumerates all the psect splits performed by the assembler.
 # The beginning of the section is indicated by %SPLITSTAB.
@@ -237,11 +306,11 @@ __pstrings 6 0 STRING 0 strings dist/default/production\SevenSegment_877a.X.prod
 # and size are in units of delta. The file address is in units of bytes.
 # All other numeric quantities are in decimal.
 %SEGMENTS
-cinit 0 7FC FF8 4 2
-maintext 0 7B5 F6A 47 2
-cstackCOMMON 1 70 70 5 1
+cstackCOMMON 1 70 70 A 1
+cstackBANK0 1 20 20 9 1
+intentry 0 4 8 CB 2
 reset_vec 0 0 0 3 2
-strings 0 3 6 1A 2
+strings 0 CF 19E 10 2
 # %NOTES Section
 # This section contains data of all the note-psects.  The beginning of the section
 # is indicated by %NOTES. The first line indicates the name and decimal

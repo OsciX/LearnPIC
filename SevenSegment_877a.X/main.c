@@ -19,21 +19,38 @@
 #define _XTAL_FREQ 4000000
 #include <xc.h>
 
-const int digits[10] = {
-    0b11000000,
-    0b11111001,
-    0b10100100,
-    0b10110000,
-    0b10011001,
-    0b10010010,
-    0b10000010,
-    0b11111000,
-    0b10000000,
-    0b10011000,
-};
 
+
+
+int currentDigit = 0;
+int update = 0;
+int state = 0;
+
+void writeDigit(uint8_t digit, uint8_t value);
+
+void __interrupt() timer_0() {
+    if (INTCONbits.TMR0IF == 1) {
+        currentDigit++;
+        if (currentDigit > 3) {
+            currentDigit = 0;
+        }
+
+        update = 1;
+        INTCONbits.TMR0IF = 0;
+    }
+};
+    
 
 int main(void) {
+    
+    // interrupt setup
+    INTCONbits.GIE = 1;
+    INTCONbits.PEIE = 1;
+    INTCONbits.TMR0IE = 1;
+    
+    // prescaler 1:4, 1ms interrupt (1kHz PWM frequency)
+    OPTION_REG = 0x01;
+    TMR0 = 155;
     
     TRISAbits.TRISA3 = 0x00;
     TRISCbits.TRISC3 = 0x00;
@@ -58,14 +75,46 @@ int main(void) {
     PORTAbits.RA3 = 0;
     
     while(1) {
-        for (int i = 0; i < 10; i++) {
-            // segment latch high, to load bits in
-            PORTCbits.RC3 = 1;
-            PORTD = digits[i];
-            // lock segment latch
-            PORTCbits.RC3 = 0;
-            __delay_ms(500);
+        for(int j = 0; j<4; j++) {
+            for(int i = 0; i<10; i++) {
+                writeDigit(j,i);
+                __delay_ms(500);
+            }
         }
     }
 }
 
+/*
+ * writeDigit simplifies putting a value on a specified seven-segment.
+ * digit specifies which 7segment display to write the bits to (0-3, right to left on the circuit board)
+ * value specifies what number to put on it
+ */
+void writeDigit(uint8_t digit, uint8_t value) {
+    
+    // const unsigned int array to simplify conversion to bits
+    const uint8_t nums[10] = {
+        0b11000000,
+        0b11111001,
+        0b10100100,
+        0b10110000,
+        0b10011001,
+        0b10010010,
+        0b10000010,
+        0b11111000,
+        0b10000000,
+        0b10011000,
+    };
+    
+    // latch enable for digit latch
+    PORTCbits.RC4 = 1;
+    // load digit specifier; 7segs 0-3 are Q5-Q8 on the latch, so this is done with a shift
+    PORTD = 0b1 << (4+digit);
+    // lock digit latch
+    PORTCbits.RC4 = 0;
+    
+    // segment latch high, to load bits in
+    PORTCbits.RC3 = 1;
+    PORTD = nums[value];
+    // lock segment latch
+    PORTCbits.RC3 = 0;
+}
