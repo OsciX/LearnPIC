@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
-  <executable name="dist/default/production\sm_877a_blink.X.production.hex">
+  <executable name="dist/default/production\SevenSegment_877a.X.production.hex">
     <memory name="program">
       <units>words</units>
       <length>8192</length>
-      <used>117</used>
-      <free>8075</free>
+      <used>104</used>
+      <free>8088</free>
     </memory>
     <memory name="data">
       <units>bytes</units>

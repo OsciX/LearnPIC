@@ -1908,13 +1908,10 @@ int main(void) {
 
     PORTAbits.RA3 = 0;
 
+
     PORTCbits.RC4 = 1;
 
-    PORTDbits.RD4 = 1;
-    PORTDbits.RD5 = 1;
-    PORTDbits.RD6 = 1;
-    PORTDbits.RD7 = 1;
-    _delay((unsigned long)((10)*(4000000/4000.0)));
+    PORTD = 0xF0;
 
     PORTCbits.RC4 = 0;
 

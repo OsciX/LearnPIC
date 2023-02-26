@@ -34,11 +34,11 @@ const int digits[10] = {
 
 
 int main(void) {
+    
     TRISAbits.TRISA3 = 0x00;
     TRISCbits.TRISC3 = 0x00;
     TRISCbits.TRISC4 = 0x00;
     TRISCbits.TRISC5 = 0x00;
-
     TRISD = 0x0;
 
     
@@ -47,20 +47,15 @@ int main(void) {
     PORTD = 0xFF;
     PORTCbits.RC5 = 0;
     
-    
-    // output enable for latches (active low)
-    PORTAbits.RA3 = 0;
-    
     // latch enable for digit latch
     PORTCbits.RC4 = 1;
     // load digit latch
-    PORTDbits.RD4 = 1;
-    PORTDbits.RD5 = 1;
-    PORTDbits.RD6 = 1;
-    PORTDbits.RD7 = 1;
+    PORTD = 0xF0;
     // lock digit latch
     PORTCbits.RC4 = 0;
     
+    // output enable for latches (active low)
+    PORTAbits.RA3 = 0;
     
     while(1) {
         for (int i = 0; i < 10; i++) {

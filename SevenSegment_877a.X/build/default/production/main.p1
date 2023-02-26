@@ -50,17 +50,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "182
 [; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f877a.h: 182: extern volatile PORTAbits_t PORTAbits __attribute__((address(0x005)));
 [v _PORTAbits `VS5 ~T0 @X0 0 e@5 ]
-"347
-[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f877a.h: 347:     struct {
-[s S12 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S12 . RD0 RD1 RD2 RD3 RD4 RD5 RD6 RD7 ]
-"346
-[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f877a.h: 346: typedef union {
-[u S11 `S12 1 ]
-[n S11 . . ]
-"358
-[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f877a.h: 358: extern volatile PORTDbits_t PORTDbits __attribute__((address(0x008)));
-[v _PORTDbits `VS11 ~T0 @X0 0 e@8 ]
 [v F36 `(v ~T0 @X0 1 tf1`ul ]
 "12 C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\builtins.h
 [v __delay `JF36 ~T0 @X0 0 e ]
@@ -312,33 +301,21 @@ Version 4.0 HI-TECH Software Intermediate Code
 "52
 [; ;main.c: 52:     PORTAbits.RA3 = 0;
 [e = . . _PORTAbits 0 3 -> -> 0 `i `uc ]
-"54
-[; ;main.c: 54:     PORTCbits.RC4 = 1;
+"55
+[; ;main.c: 55:     PORTCbits.RC4 = 1;
 [e = . . _PORTCbits 0 4 -> -> 1 `i `uc ]
-"56
-[; ;main.c: 56:     PORTDbits.RD4 = 1;
-[e = . . _PORTDbits 0 4 -> -> 1 `i `uc ]
 "57
-[; ;main.c: 57:     PORTDbits.RD5 = 1;
-[e = . . _PORTDbits 0 5 -> -> 1 `i `uc ]
-"58
-[; ;main.c: 58:     PORTDbits.RD6 = 1;
-[e = . . _PORTDbits 0 6 -> -> 1 `i `uc ]
+[; ;main.c: 57:     PORTD = 0xF0;
+[e = _PORTD -> -> 240 `i `uc ]
 "59
-[; ;main.c: 59:     PORTDbits.RD7 = 1;
-[e = . . _PORTDbits 0 7 -> -> 1 `i `uc ]
-"60
-[; ;main.c: 60:     _delay((unsigned long)((10)*(4000000/4000.0)));
-[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
-"62
-[; ;main.c: 62:     PORTCbits.RC4 = 0;
+[; ;main.c: 59:     PORTCbits.RC4 = 0;
 [e = . . _PORTCbits 0 4 -> -> 0 `i `uc ]
-"65
-[; ;main.c: 65:     while(1) {
+"62
+[; ;main.c: 62:     while(1) {
 [e :U 97 ]
 {
-"66
-[; ;main.c: 66:         for (int i = 0; i < 10; i++) {
+"63
+[; ;main.c: 63:         for (int i = 0; i < 10; i++) {
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
@@ -346,32 +323,32 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $U 100  ]
 [e :U 99 ]
 {
-"68
-[; ;main.c: 68:             PORTCbits.RC3 = 1;
+"65
+[; ;main.c: 65:             PORTCbits.RC3 = 1;
 [e = . . _PORTCbits 0 3 -> -> 1 `i `uc ]
-"69
-[; ;main.c: 69:             PORTD = digits[i];
+"66
+[; ;main.c: 66:             PORTD = digits[i];
 [e = _PORTD -> *U + &U _digits * -> -> _i `ui `ux -> -> # *U &U _digits `ui `ux `uc ]
-"71
-[; ;main.c: 71:             PORTCbits.RC3 = 0;
+"68
+[; ;main.c: 68:             PORTCbits.RC3 = 0;
 [e = . . _PORTCbits 0 3 -> -> 0 `i `uc ]
-"72
-[; ;main.c: 72:             _delay((unsigned long)((500)*(4000000/4000.0)));
+"69
+[; ;main.c: 69:             _delay((unsigned long)((500)*(4000000/4000.0)));
 [e ( __delay (1 -> * -> -> 500 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
-"73
-[; ;main.c: 73:         }
+"70
+[; ;main.c: 70:         }
 }
 [e ++ _i -> 1 `i ]
 [e $ < _i -> 10 `i 99  ]
 [e :U 100 ]
 }
-"74
-[; ;main.c: 74:     }
+"71
+[; ;main.c: 71:     }
 }
 [e :U 96 ]
 [e $U 97  ]
 [e :U 98 ]
-"75
-[; ;main.c: 75: }
+"72
+[; ;main.c: 72: }
 [e :UE 95 ]
 }
