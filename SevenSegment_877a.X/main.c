@@ -18,8 +18,6 @@
 
 #define _XTAL_FREQ 4000000
 #include <xc.h>
-#include <stdbool.h>       /* For true/false definition */
-#include <stdio.h>
 
 uint32_t tcount = 0;
 uint8_t diag = 0;
@@ -29,6 +27,8 @@ void writeDigit(uint8_t digit, uint8_t value);
 
 
 void __interrupt() timer_0() {
+    // preload timer for 1kHz frequency
+    TMR0 = 10;
     if (INTCONbits.TMR0IF == 1) {
         tcount++;
         diag = !diag;
@@ -40,10 +40,10 @@ void __interrupt() timer_0() {
 int main(void) {
     setup();
 
-    uint8_t places[4] = {0,0,0,0};
+    uint8_t places[4] = {0,0,0,0};          // holds digits to write to display
     
     uint16_t disp = 0;                      // count to display
-    uint16_t cal = 0;                      // count to display
+    uint16_t cal = 0;                       // temp variable for filling places from disp
     uint8_t ldu = 0;                        // last digit updated
     uint32_t pcount = tcount;               // used for counting upwards every 1 sec
     
@@ -66,6 +66,7 @@ int main(void) {
                 }
             }
             
+            // 500Hz signal on RB7, for checking interrupt timing
             PORTBbits.RB7 = diag;  
         }
         
@@ -82,7 +83,7 @@ void setup() {
     
     // prescaler 1:4, 1ms interrupt (1kHz PWM frequency)
     OPTION_REG = 0x01;
-    TMR0 = 155;
+    TMR0 = 10;
     
     TRISAbits.TRISA3 = 0;
     TRISBbits.TRISB7 = 0;
@@ -148,7 +149,7 @@ void writeDigit(uint8_t digit, uint8_t value) {
     // lock segment latch
     PORTCbits.RC3 = 0;
     
-// output enable for latches (active low)
+    // output enable for latches (active low)
     PORTAbits.RA3 = 0;  
 
 }
