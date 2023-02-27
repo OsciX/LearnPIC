@@ -1875,31 +1875,163 @@ extern __bank0 __bit __timeout;
 # 29 "C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\\pic\\include\\xc.h" 2 3
 # 20 "main.c" 2
 
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c90\\stdbool.h" 1 3
+# 21 "main.c" 2
+
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c90\\stdio.h" 1 3
+
+
+
+# 1 "C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\\pic\\include\\__size_t.h" 1 3
+
+
+
+typedef unsigned size_t;
+# 4 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c90\\stdio.h" 2 3
+
+# 1 "C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\\pic\\include\\__null.h" 1 3
+# 5 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c90\\stdio.h" 2 3
 
 
 
 
-int currentDigit = 0;
-int update = 0;
-int state = 0;
 
+
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c90\\stdarg.h" 1 3
+
+
+
+
+
+
+typedef void * va_list[1];
+
+#pragma intrinsic(__va_start)
+extern void * __va_start(void);
+
+#pragma intrinsic(__va_arg)
+extern void * __va_arg(void *, ...);
+# 11 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c90\\stdio.h" 2 3
+# 43 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c90\\stdio.h" 3
+struct __prbuf
+{
+ char * ptr;
+ void (* func)(char);
+};
+# 85 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c90\\stdio.h" 3
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c90\\conio.h" 1 3
+
+
+
+
+
+
+
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c90\\errno.h" 1 3
+# 29 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c90\\errno.h" 3
+extern int errno;
+# 8 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c90\\conio.h" 2 3
+
+
+
+
+extern void init_uart(void);
+
+extern char getch(void);
+extern char getche(void);
+extern void putch(char);
+extern void ungetch(char);
+
+extern __bit kbhit(void);
+
+
+
+extern char * cgets(char *);
+extern void cputs(const char *);
+# 85 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c90\\stdio.h" 2 3
+
+
+
+extern int cprintf(char *, ...);
+#pragma printf_check(cprintf)
+
+
+
+extern int _doprnt(struct __prbuf *, const register char *, register va_list);
+# 180 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c90\\stdio.h" 3
+#pragma printf_check(vprintf) const
+#pragma printf_check(vsprintf) const
+
+extern char * gets(char *);
+extern int puts(const char *);
+extern int scanf(const char *, ...) __attribute__((unsupported("scanf() is not supported by this compiler")));
+extern int sscanf(const char *, const char *, ...) __attribute__((unsupported("sscanf() is not supported by this compiler")));
+extern int vprintf(const char *, va_list) __attribute__((unsupported("vprintf() is not supported by this compiler")));
+extern int vsprintf(char *, const char *, va_list) __attribute__((unsupported("vsprintf() is not supported by this compiler")));
+extern int vscanf(const char *, va_list ap) __attribute__((unsupported("vscanf() is not supported by this compiler")));
+extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupported("vsscanf() is not supported by this compiler")));
+
+#pragma printf_check(printf) const
+#pragma printf_check(sprintf) const
+extern int sprintf(char *, const char *, ...);
+extern int printf(const char *, ...);
+# 22 "main.c" 2
+
+
+uint32_t tcount = 0;
+uint8_t diag = 0;
+
+void setup();
 void writeDigit(uint8_t digit, uint8_t value);
+
 
 void __attribute__((picinterrupt(("")))) timer_0() {
     if (INTCONbits.TMR0IF == 1) {
-        currentDigit++;
-        if (currentDigit > 3) {
-            currentDigit = 0;
-        }
-
-        update = 1;
+        tcount++;
+        diag = !diag;
         INTCONbits.TMR0IF = 0;
     }
 };
 
 
 int main(void) {
+    setup();
 
+    uint8_t places[4] = {0,0,0,0};
+
+    uint16_t disp = 0;
+    uint16_t cal = 0;
+    uint8_t ldu = 0;
+    uint32_t pcount = tcount;
+
+    while(1) {
+
+        if (ldu != tcount%4) {
+
+            ldu = tcount%4;
+            writeDigit(ldu, places[ldu]);
+
+
+            if (tcount - pcount >= 1000) {
+                pcount = tcount;
+                disp++;
+
+                cal = disp;
+                for (int i = 0; i < 4; i++) {
+                    places[i] = cal % 10;
+                    cal /= 10;
+                }
+            }
+
+            PORTBbits.RB7 = diag;
+        }
+
+
+    }
+}
+
+
+void setup() {
 
     INTCONbits.GIE = 1;
     INTCONbits.PEIE = 1;
@@ -1909,11 +2041,12 @@ int main(void) {
     OPTION_REG = 0x01;
     TMR0 = 155;
 
-    TRISAbits.TRISA3 = 0x00;
-    TRISCbits.TRISC3 = 0x00;
-    TRISCbits.TRISC4 = 0x00;
-    TRISCbits.TRISC5 = 0x00;
-    TRISD = 0x0;
+    TRISAbits.TRISA3 = 0;
+    TRISBbits.TRISB7 = 0;
+    TRISCbits.TRISC3 = 0;
+    TRISCbits.TRISC4 = 0;
+    TRISCbits.TRISC5 = 0;
+    TRISD = 0x00;
 
 
 
@@ -1931,21 +2064,16 @@ int main(void) {
 
     PORTAbits.RA3 = 0;
 
-    while(1) {
-        for(int j = 0; j<4; j++) {
-        for(int i = 0; i<10; i++) {
-            writeDigit(j,i);
-            _delay((unsigned long)((500)*(4000000/4000.0)));
-        }
-        }
-    }
+
 }
 
 
 
 
 
+
 void writeDigit(uint8_t digit, uint8_t value) {
+
 
     const uint8_t nums[10] = {
         0b11000000,
@@ -1961,6 +2089,10 @@ void writeDigit(uint8_t digit, uint8_t value) {
     };
 
 
+
+    PORTAbits.RA3 = 1;
+
+
     PORTCbits.RC4 = 1;
 
     PORTD = 0b1 << (4+digit);
@@ -1972,4 +2104,8 @@ void writeDigit(uint8_t digit, uint8_t value) {
     PORTD = nums[value];
 
     PORTCbits.RC3 = 0;
+
+
+    PORTAbits.RA3 = 0;
+
 }

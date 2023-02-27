@@ -3,6 +3,10 @@
 [d edition pro ]
 [d chip 16F877A ]
 [d frameptr 0 ]
+"5 C:\Program Files\Microchip\xc8\v2.36\pic\sources\c90\common\lwdiv.c
+[v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
+"5 C:\Program Files\Microchip\xc8\v2.36\pic\sources\c90\common\lwmod.c
+[v ___lwmod __lwmod `(ui  1 e 2 0 ]
 "10 C:\Program Files\Microchip\xc8\v2.36\pic\sources\c90\common\sprcadd.c
 [v ___fladd __fladd `(d  1 e 4 0 ]
 "4 C:\Program Files\Microchip\xc8\v2.36\pic\sources\c90\common\Umul8_16.c
@@ -13,13 +17,15 @@
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
 "31 C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
 [v _timer_0 timer_0 `II(v  1 e 1 0 ]
-"44
+"40
 [v _main main `(i  1 e 2 0 ]
-"91
+"77
+[v _setup setup `(v  1 e 1 0 ]
+"118
 [v _writeDigit writeDigit `(v  1 e 1 0 ]
 "60 C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f877a.h
 [v _TMR0 TMR0 `VEuc  1 e 1 @1 ]
-[s S117 . 1 `uc 1 RA0 1 0 :1:0 
+[s S169 . 1 `uc 1 RA0 1 0 :1:0 
 `uc 1 RA1 1 0 :1:1 
 `uc 1 RA2 1 0 :1:2 
 `uc 1 RA3 1 0 :1:3 
@@ -27,9 +33,21 @@
 `uc 1 RA5 1 0 :1:5 
 ]
 "182
-[u S124 . 1 `S117 1 . 1 0 ]
-[v _PORTAbits PORTAbits `VES124  1 e 1 @5 ]
-[s S95 . 1 `uc 1 RC0 1 0 :1:0 
+[u S176 . 1 `S169 1 . 1 0 ]
+[v _PORTAbits PORTAbits `VES176  1 e 1 @5 ]
+[s S64 . 1 `uc 1 RB0 1 0 :1:0 
+`uc 1 RB1 1 0 :1:1 
+`uc 1 RB2 1 0 :1:2 
+`uc 1 RB3 1 0 :1:3 
+`uc 1 RB4 1 0 :1:4 
+`uc 1 RB5 1 0 :1:5 
+`uc 1 RB6 1 0 :1:6 
+`uc 1 RB7 1 0 :1:7 
+]
+"234
+[u S73 . 1 `S64 1 . 1 0 ]
+[v _PORTBbits PORTBbits `VES73  1 e 1 @6 ]
+[s S147 . 1 `uc 1 RC0 1 0 :1:0 
 `uc 1 RC1 1 0 :1:1 
 `uc 1 RC2 1 0 :1:2 
 `uc 1 RC3 1 0 :1:3 
@@ -39,8 +57,8 @@
 `uc 1 RC7 1 0 :1:7 
 ]
 "296
-[u S104 . 1 `S95 1 . 1 0 ]
-[v _PORTCbits PORTCbits `VES104  1 e 1 @7 ]
+[u S156 . 1 `S147 1 . 1 0 ]
+[v _PORTCbits PORTCbits `VES156  1 e 1 @7 ]
 "341
 [v _PORTD PORTD `VEuc  1 e 1 @8 ]
 [s S22 . 1 `uc 1 RBIF 1 0 :1:0 
@@ -62,7 +80,7 @@
 [v _INTCONbits INTCONbits `VES36  1 e 1 @11 ]
 "1256
 [v _OPTION_REG OPTION_REG `VEuc  1 e 1 @129 ]
-[s S56 . 1 `uc 1 TRISA0 1 0 :1:0 
+[s S87 . 1 `uc 1 TRISA0 1 0 :1:0 
 `uc 1 TRISA1 1 0 :1:1 
 `uc 1 TRISA2 1 0 :1:2 
 `uc 1 TRISA3 1 0 :1:3 
@@ -70,9 +88,21 @@
 `uc 1 TRISA5 1 0 :1:5 
 ]
 "1341
-[u S63 . 1 `S56 1 . 1 0 ]
-[v _TRISAbits TRISAbits `VES63  1 e 1 @133 ]
-[s S73 . 1 `uc 1 TRISC0 1 0 :1:0 
+[u S94 . 1 `S87 1 . 1 0 ]
+[v _TRISAbits TRISAbits `VES94  1 e 1 @133 ]
+[s S104 . 1 `uc 1 TRISB0 1 0 :1:0 
+`uc 1 TRISB1 1 0 :1:1 
+`uc 1 TRISB2 1 0 :1:2 
+`uc 1 TRISB3 1 0 :1:3 
+`uc 1 TRISB4 1 0 :1:4 
+`uc 1 TRISB5 1 0 :1:5 
+`uc 1 TRISB6 1 0 :1:6 
+`uc 1 TRISB7 1 0 :1:7 
+]
+"1393
+[u S113 . 1 `S104 1 . 1 0 ]
+[v _TRISBbits TRISBbits `VES113  1 e 1 @134 ]
+[s S125 . 1 `uc 1 TRISC0 1 0 :1:0 
 `uc 1 TRISC1 1 0 :1:1 
 `uc 1 TRISC2 1 0 :1:2 
 `uc 1 TRISC3 1 0 :1:3 
@@ -82,37 +112,72 @@
 `uc 1 TRISC7 1 0 :1:7 
 ]
 "1455
-[u S82 . 1 `S73 1 . 1 0 ]
-[v _TRISCbits TRISCbits `VES82  1 e 1 @135 ]
+[u S134 . 1 `S125 1 . 1 0 ]
+[v _TRISCbits TRISCbits `VES134  1 e 1 @135 ]
 "1500
 [v _TRISD TRISD `VEuc  1 e 1 @136 ]
-"25 C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
-[v _currentDigit currentDigit `i  1 e 2 0 ]
-"26
-[v _update update `i  1 e 2 0 ]
-"44
+"24 C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
+[v _tcount tcount `ul  1 e 4 0 ]
+"25
+[v _diag diag `uc  1 e 1 0 ]
+"40
 [v _main main `(i  1 e 2 0 ]
 {
-"79
-[v main@i i `i  1 a 2 5 ]
-"78
-[v main@j j `i  1 a 2 3 ]
-"85
+"63
+[v main@i i `i  1 a 2 20 ]
+"43
+[v main@places places `[4]uc  1 a 4 8 ]
+"48
+[v main@pcount pcount `ul  1 a 4 12 ]
+"46
+[v main@cal cal `ui  1 a 2 18 ]
+"45
+[v main@disp disp `ui  1 a 2 16 ]
+"47
+[v main@ldu ldu `uc  1 a 1 22 ]
+"74
 } 0
-"91
+"118
 [v _writeDigit writeDigit `(v  1 e 1 0 ]
 {
 [v writeDigit@digit digit `uc  1 a 1 wreg ]
 [v writeDigit@digit digit `uc  1 a 1 wreg ]
 [v writeDigit@value value `uc  1 p 1 3 ]
-"93
+"121
 [v writeDigit@nums nums `DC[10]uc  1 s 10 nums ]
-"107
+"136
 [v writeDigit@digit digit `uc  1 a 1 5 ]
-"118
+"154
 } 0
-"31
+"77
+[v _setup setup `(v  1 e 1 0 ]
+{
+"111
+} 0
+"5 C:\Program Files\Microchip\xc8\v2.36\pic\sources\c90\common\lwmod.c
+[v ___lwmod __lwmod `(ui  1 e 2 0 ]
+{
+"10
+[v ___lwmod@counter counter `uc  1 a 1 8 ]
+"5
+[v ___lwmod@divisor divisor `ui  1 p 2 3 ]
+[v ___lwmod@dividend dividend `ui  1 p 2 5 ]
+"25
+} 0
+"5 C:\Program Files\Microchip\xc8\v2.36\pic\sources\c90\common\lwdiv.c
+[v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
+{
+"10
+[v ___lwdiv@quotient quotient `ui  1 a 2 8 ]
+"11
+[v ___lwdiv@counter counter `uc  1 a 1 10 ]
+"5
+[v ___lwdiv@divisor divisor `ui  1 p 2 3 ]
+[v ___lwdiv@dividend dividend `ui  1 p 2 5 ]
+"30
+} 0
+"31 C:\Users\Ryan\MPLABXProjects\SevenSegment_877a.X\main.c
 [v _timer_0 timer_0 `II(v  1 e 1 0 ]
 {
-"41
+"37
 } 0

@@ -18,31 +18,63 @@
 
 #define _XTAL_FREQ 4000000
 #include <xc.h>
+#include <stdbool.h>       /* For true/false definition */
+#include <stdio.h>
 
+uint32_t tcount = 0;
+uint8_t diag = 0;
 
-
-
-int currentDigit = 0;
-int update = 0;
-int state = 0;
-
+void setup();
 void writeDigit(uint8_t digit, uint8_t value);
+
 
 void __interrupt() timer_0() {
     if (INTCONbits.TMR0IF == 1) {
-        currentDigit++;
-        if (currentDigit > 3) {
-            currentDigit = 0;
-        }
-
-        update = 1;
+        tcount++;
+        diag = !diag;
         INTCONbits.TMR0IF = 0;
     }
 };
     
 
 int main(void) {
+    setup();
+
+    uint8_t places[4] = {0,0,0,0};
     
+    uint16_t disp = 0;                      // count to display
+    uint16_t cal = 0;                      // count to display
+    uint8_t ldu = 0;                        // last digit updated
+    uint32_t pcount = tcount;               // used for counting upwards every 1 sec
+    
+    while(1) {
+        
+        if (ldu != tcount%4) {
+            // update ldu and write digit
+            ldu = tcount%4;
+            writeDigit(ldu, places[ldu]);    
+
+            // if ldu has changed, check if we need to count up
+            if (tcount - pcount >= 1000) {
+                pcount = tcount;
+                disp++;
+                
+                cal = disp;
+                for (int i = 0; i < 4; i++) {
+                    places[i] = cal % 10;
+                    cal /= 10;
+                }
+            }
+            
+            PORTBbits.RB7 = diag;  
+        }
+        
+       
+    }
+}
+
+// Initialize registers and interrupts
+void setup() { 
     // interrupt setup
     INTCONbits.GIE = 1;
     INTCONbits.PEIE = 1;
@@ -52,11 +84,12 @@ int main(void) {
     OPTION_REG = 0x01;
     TMR0 = 155;
     
-    TRISAbits.TRISA3 = 0x00;
-    TRISCbits.TRISC3 = 0x00;
-    TRISCbits.TRISC4 = 0x00;
-    TRISCbits.TRISC5 = 0x00;
-    TRISD = 0x0;
+    TRISAbits.TRISA3 = 0;
+    TRISBbits.TRISB7 = 0;
+    TRISCbits.TRISC3 = 0;
+    TRISCbits.TRISC4 = 0;
+    TRISCbits.TRISC5 = 0;
+    TRISD = 0x00;
 
     
     // turn off 8LEDs
@@ -72,16 +105,9 @@ int main(void) {
     PORTCbits.RC4 = 0;
     
     // output enable for latches (active low)
-    PORTAbits.RA3 = 0;
+    PORTAbits.RA3 = 0;  
     
-    while(1) {
-        for(int j = 0; j<4; j++) {
-            for(int i = 0; i<10; i++) {
-                writeDigit(j,i);
-                __delay_ms(500);
-            }
-        }
-    }
+
 }
 
 /*
@@ -105,6 +131,10 @@ void writeDigit(uint8_t digit, uint8_t value) {
         0b10011000,
     };
     
+    
+    // output enable for latches (active low)
+    PORTAbits.RA3 = 1;  
+    
     // latch enable for digit latch
     PORTCbits.RC4 = 1;
     // load digit specifier; 7segs 0-3 are Q5-Q8 on the latch, so this is done with a shift
@@ -117,4 +147,9 @@ void writeDigit(uint8_t digit, uint8_t value) {
     PORTD = nums[value];
     // lock segment latch
     PORTCbits.RC3 = 0;
+    
+// output enable for latches (active low)
+    PORTAbits.RA3 = 0;  
+
 }
+
